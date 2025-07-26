@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+
 using namespace std;
 class Expense
 {
@@ -9,7 +11,6 @@ public:
     string category;
     string date;
     string note;
-    
 
     void input()
     {
@@ -27,6 +28,20 @@ public:
     void display(int index) const
     {
         cout << index + 1 << "." << date << "|$" << amount << "|" << category << "|" << note << endl;
+    }
+
+    void saveToFile()
+    {
+        ofstream out("expenses.txt", ios::app); // append mode
+        if (out.is_open())
+        {
+            out << date << "," << category << "," << amount << "\n";
+            out.close();
+        }
+        else
+        {
+            cout << "Error opening file for writing!\n";
+        }
     }
 };
 vector<Expense> expenses; // To store expenses
@@ -46,9 +61,11 @@ int main()
         switch (ch)
         {
         case 1:
-        {                                //non-trivial declarations
+        { // non-trivial declarations
             Expense e;
             e.input();
+            expenses.push_back(e);
+            e.saveToFile();
             expenses.push_back(e);
             cout << "Expenses added successfully!!" << endl;
             break;
@@ -63,19 +80,19 @@ int main()
             {
                 for (int i = 0; i < expenses.size(); ++i)
                 {
-                    expenses[i].display(i); 
+                    expenses[i].display(i);
                 }
             }
             break;
         }
         case 3:
         {
-            cout<<"Exiting Expanse Tracker , Thanks "<<endl;
+            cout << "Exiting Expanse Tracker , Thanks for visiting " << endl;
             return 0;
-            
         }
-            default:
-                cout << " Invalid choice. Try again.\n";
+        default:
+            cout << " Invalid choice. Try again.\n";
         }
     }
+    return 0;
 }
