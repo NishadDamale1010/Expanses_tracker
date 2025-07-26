@@ -35,7 +35,7 @@ public:
         ofstream out("expenses.txt", ios::app); // append mode
         if (out.is_open())
         {
-            out << date << "," << category << "," << amount << "\n";
+            out << date << "|" << category << "|" << amount << "\n";
             out.close();
         }
         else
