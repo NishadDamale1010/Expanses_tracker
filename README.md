@@ -8,4 +8,6 @@
 
 💰 Show total spending
 
+Save expense in File
+
 </p>
