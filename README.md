@@ -1,5 +1,5 @@
 # Expanses_tracker
-<p>Features You’ll Build:
+<p>Features :
 ➕ Add an expense (amount, category, date, note)
 
 📋 View all expenses
